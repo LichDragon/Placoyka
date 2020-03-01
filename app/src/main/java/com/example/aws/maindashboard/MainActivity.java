@@ -10,10 +10,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+@SuppressWarnings("RedundantCast")
+public class MainActivity extends AppCompatActivity  {
+
+    private Button button0;
 
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction ;
@@ -24,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     // fragment codes
     public static final int DASHBOARD_CODE = 0 ;
     public static final int SETTINGS_CODE = 1 ;
-    public static final int SCHOOL_CODE = 2 ;
+    public static final int SCHOOL_CODE = 2;
     public static final int MAP_CODE = 3 ;
     public static final int FIT_CODE = 4 ;
     public static final int SEARCH_CODE = 5 ;
@@ -34,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+
+
+
+        //activity_main меню
 
         recyclerView = findViewById(R.id.rv_menu);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -59,10 +71,33 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.container,dashboardFrag);
         fragmentTransaction.commit();
 
-        
+        setContentView(R.layout.fragment_dashboard);
 
+        button0 = (Button) findViewById(R.id.button0);
+        button0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                button0 = (Button) findViewById(R.id.button0);
+                button0.setOnClickListener(new View.OnClickListener() {
+                                               @Override
+                                               public void onClick(View v) {
+                                                   openHardAtletic();
+                                               }
+                                           }
 
+                );
 
+            }
+        });
 
     }
+
+
+    public void openHardAtletic(){
+        Intent intent = new Intent(this, HardAtletic.class);
+        startActivity(intent);
+    }
+
+
+
 }
